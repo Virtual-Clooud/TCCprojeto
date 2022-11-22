@@ -1,9 +1,57 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Chunk.gd" type="Script" id=1]
 [ext_resource path="res://expandido.gd" type="Script" id=2]
 [ext_resource path="res://lista.gd" type="Script" id=3]
 [ext_resource path="res://Master.gd" type="Script" id=4]
+
+[sub_resource type="Shader" id=2]
+code = "shader_type canvas_item;
+
+uniform vec4 line_color : hint_color = vec4(1);
+uniform float line_thickness : hint_range(0, 10) = 1.0;
+
+void fragment() {
+	vec2 size = TEXTURE_PIXEL_SIZE * line_thickness;
+	
+	float outline = texture(TEXTURE, UV + vec2(-size.x, 0)).a;
+	outline += texture(TEXTURE, UV + vec2(0, size.y)).a;
+	
+	outline += texture(TEXTURE, UV + vec2(size.x, 0)).a;
+	
+	outline += texture(TEXTURE, UV + vec2(0, -size.y)).a;
+	
+	
+	outline += texture(TEXTURE, UV + vec2(-size.x, size.y)).a;
+	
+	outline += texture(TEXTURE, UV + vec2(-size.x, size.y * 0.5)).a;
+	
+	
+	
+	outline += texture(TEXTURE, UV + vec2(size.x, size.y)).a;
+	outline += texture(TEXTURE, UV + vec2(size.x, size.y * 0.5)).a;
+	
+	
+	outline += texture(TEXTURE, UV + vec2(-size.x, -size.y)).a;
+	outline += texture(TEXTURE, UV + vec2(-size.x, -size.y * 0.5)).a;
+	
+	
+	
+	outline += texture(TEXTURE, UV + vec2(size.x, -size.y)).a;
+	outline += texture(TEXTURE, UV + vec2(size.x, -size.y * 0.5)).a;
+	
+	
+	outline = min(outline, 1.0);
+	
+	
+	vec4 color = texture(TEXTURE, UV);
+	COLOR = mix(color, line_color, outline - color.a);
+}"
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = SubResource( 2 )
+shader_param/line_color = Color( 1, 1, 1, 1 )
+shader_param/line_thickness = 1.0
 
 [sub_resource type="Animation" id=1]
 resource_name = "hover"
@@ -23,6 +71,13 @@ tracks/0/keys = {
 "values": [ Vector2( 1, 1 ), Vector2( 1.2, 1.2 ), Vector2( 1, 1 ) ]
 }
 
+[sub_resource type="ParticlesMaterial" id=4]
+flag_disable_z = true
+gravity = Vector3( 0, 98, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 30.7
+
 [node name="Master" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -39,6 +94,7 @@ nome = "El mosco"
 tamanho = Vector2( 400, 80 )
 
 [node name="Panel" type="Panel" parent="Chunk"]
+material = SubResource( 3 )
 margin_left = 340.0
 margin_top = 58.0
 margin_right = 663.0
@@ -163,6 +219,10 @@ align = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Chunk"]
 anims/hover = SubResource( 1 )
+
+[node name="Particles2D" type="Particles2D" parent="Chunk"]
+position = Vector2( 369, 97 )
+process_material = SubResource( 4 )
 
 [node name="minimiza" type="Button" parent="."]
 margin_left = 800.0
