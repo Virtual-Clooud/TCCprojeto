@@ -1,0 +1,192 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Chunk.gd" type="Script" id=1]
+[ext_resource path="res://expandido.gd" type="Script" id=2]
+[ext_resource path="res://lista.gd" type="Script" id=3]
+[ext_resource path="res://Master.gd" type="Script" id=4]
+
+[sub_resource type="Animation" id=1]
+resource_name = "hover"
+length = 1.5
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Panel:rect_scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.75, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.2, 1.2 ), Vector2( 1, 1 ) ]
+}
+
+[node name="Master" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 4 )
+
+[node name="Chunk" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+nome = "El mosco"
+tamanho = Vector2( 400, 80 )
+
+[node name="Panel" type="Panel" parent="Chunk"]
+margin_left = 340.0
+margin_top = 58.0
+margin_right = 663.0
+margin_bottom = 121.0
+grow_horizontal = 2
+
+[node name="expandido" type="Popup" parent="Chunk/Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -192.0
+margin_top = -136.0
+margin_right = -192.0
+margin_bottom = -136.0
+script = ExtResource( 2 )
+
+[node name="painel" type="ColorRect" parent="Chunk/Panel/expandido"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -250.0
+margin_top = -250.0
+margin_right = 250.0
+margin_bottom = 250.0
+color = Color( 0.952941, 0.85098, 0.85098, 1 )
+
+[node name="lista" type="ColorRect" parent="Chunk/Panel/expandido/painel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 70.0
+margin_bottom = -54.0
+color = Color( 0.505882, 0.505882, 0.505882, 1 )
+script = ExtResource( 3 )
+
+[node name="Panel" type="ColorRect" parent="Chunk/Panel/expandido/painel"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = 196.0
+margin_bottom = 250.0
+color = Color( 0.423529, 0.513726, 0.933333, 1 )
+
+[node name="novoitem" type="Button" parent="Chunk/Panel/expandido/painel/Panel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -55.5
+margin_top = -10.0
+margin_right = 55.5
+margin_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Criar novo Item"
+icon_align = 1
+
+[node name="nome" type="Label" parent="Chunk/Panel/expandido/painel"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -20.0
+margin_right = 20.0
+margin_bottom = 14.0
+align = 1
+valign = 1
+
+[node name="icone" type="TextureRect" parent="Chunk/Panel/expandido/painel"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -192.0
+margin_right = -152.0
+margin_bottom = 40.0
+
+[node name="adiciona" type="Popup" parent="Chunk/Panel/expandido/painel"]
+visible = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="control" type="Control" parent="Chunk/Panel/expandido/painel/adiciona"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 70.0
+
+[node name="tarefa" type="Button" parent="Chunk/Panel/expandido/painel/adiciona/control"]
+margin_left = 15.0
+margin_top = 75.0
+margin_right = 98.0
+margin_bottom = 95.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Criar Tarefa"
+
+[node name="habito" type="Button" parent="Chunk/Panel/expandido/painel/adiciona/control"]
+margin_left = 396.5
+margin_top = 72.0
+margin_right = 483.5
+margin_bottom = 92.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Criar Hábito"
+
+[node name="expandeC" type="Button" parent="Chunk/Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="icone" type="TextureRect" parent="Chunk/Panel"]
+anchor_left = 0.1
+anchor_top = 0.5
+anchor_right = 0.1
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="nome" type="Label" parent="Chunk/Panel"]
+anchor_left = 0.5
+anchor_top = 0.3
+anchor_right = 0.5
+anchor_bottom = 0.3
+margin_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+align = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Chunk"]
+anims/hover = SubResource( 1 )
+
+[node name="minimiza" type="Button" parent="."]
+margin_left = 800.0
+margin_top = 40.0
+margin_right = 942.0
+margin_bottom = 60.0
+text = "Minimiza esse troço"
+
+[node name="fecha" type="Button" parent="."]
+margin_left = 832.0
+margin_top = 104.0
+margin_right = 943.0
+margin_bottom = 124.0
+text = "Fecha o negoço"
+
+[node name="horario" type="Label" parent="."]
+margin_right = 40.0
+margin_bottom = 14.0
+
+[connection signal="pressed" from="Chunk/Panel/expandido/painel/Panel/novoitem" to="Chunk/Panel/expandido" method="_on_novoitem_pressed"]
+[connection signal="pressed" from="Chunk/Panel/expandido/painel/adiciona/control/tarefa" to="Chunk/Panel/expandido/painel/lista" method="_on_tarefa_pressed"]
+[connection signal="pressed" from="Chunk/Panel/expandido/painel/adiciona/control/habito" to="Chunk/Panel/expandido/painel/lista" method="_on_habito_pressed"]
+[connection signal="mouse_entered" from="Chunk/Panel/expandeC" to="Chunk" method="_on_expandeC_mouse_entered"]
+[connection signal="mouse_exited" from="Chunk/Panel/expandeC" to="Chunk" method="_on_expandeC_mouse_exited"]
+[connection signal="pressed" from="Chunk/Panel/expandeC" to="Chunk" method="_on_Button_pressed"]
+[connection signal="pressed" from="minimiza" to="." method="_on_minimiza_pressed"]
+[connection signal="pressed" from="fecha" to="." method="_on_fecha_pressed"]

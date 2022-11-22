@@ -1,0 +1,93 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Todo.gd" type="Script" id=1]
+
+[node name="Todo" type="Control"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = 4.0
+margin_bottom = 30.0
+rect_pivot_offset = Vector2( 20, 20 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Panel" type="ColorRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -235.0
+margin_top = -60.0
+margin_right = 235.0
+margin_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color( 0.560784, 0.807843, 0.576471, 1 )
+
+[node name="nome" type="Label" parent="Panel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -96.0
+margin_top = -53.0
+margin_right = 92.0
+margin_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, "
+align = 1
+valign = 1
+autowrap = true
+
+[node name="feito" type="CheckBox" parent="Panel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -220.0
+margin_top = 27.0
+margin_right = -196.0
+margin_bottom = 51.0
+action_mode = 0
+text = "Feito"
+
+[node name="datavencimento" type="Label" parent="Panel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 136.0
+margin_top = 35.0
+margin_right = 210.0
+margin_bottom = 49.0
+text = "69/04/0420"
+
+[node name="importante" type="CheckBox" parent="Panel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -144.0
+margin_top = 27.0
+margin_right = -44.0
+margin_bottom = 51.0
+text = "Importante"
+
+[node name="urgente" type="CheckBox" parent="Panel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -32.0
+margin_top = 27.0
+margin_right = 47.0
+margin_bottom = 51.0
+text = "Urgente"
+
+[node name="vencimento" type="CheckBox" parent="Panel"]
+margin_right = 24.0
+margin_bottom = 24.0
